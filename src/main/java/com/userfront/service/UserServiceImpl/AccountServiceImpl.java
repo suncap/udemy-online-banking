@@ -61,7 +61,7 @@ public class AccountServiceImpl implements AccountService {
     		primaryAccountDao.save(primaryAccount);
     		
     		Date date = new Date();
-    		PrimaryTransaction transaction = new PrimaryTransaction(date, "Deposit to primary account", accountType, "OK", amount, primaryAccount.getAccountBalance());
+    		PrimaryTransaction transaction = new PrimaryTransaction(date, "Deposit to primary account", accountType, "OK", amount, primaryAccount.getAccountBalance(), primaryAccount);
     		
     	} else if("Savings".equalsIgnoreCase(accountType)) {
     		SavingsAccount savingsAcc = user.getSavingsAccount();
@@ -84,7 +84,7 @@ public class AccountServiceImpl implements AccountService {
 
             Date date = new Date();
 
-            PrimaryTransaction primaryTransaction = new PrimaryTransaction(date, "Withdraw from Primary Account", "Account", "Finished", amount, primaryAccount.getAccountBalance());
+            PrimaryTransaction primaryTransaction = new PrimaryTransaction(date, "Withdraw from Primary Account", "Account", "Finished", amount, primaryAccount.getAccountBalance(), primaryAccount);
         } else if (accountType.equalsIgnoreCase("Savings")) {
             SavingsAccount savingsAccount = user.getSavingsAccount();
             savingsAccount.setAccountBalance(savingsAccount.getAccountBalance().subtract(new BigDecimal(amount)));

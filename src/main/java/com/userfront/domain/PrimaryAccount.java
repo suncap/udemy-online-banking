@@ -28,7 +28,7 @@ public class PrimaryAccount {
 		fetch = FetchType.LAZY // lazy loading
 	)
 	@JsonIgnore // without this transaction there will be an infinite loop because PrimaryTransaction has also a reference to PrimaryAccount
-	private List<PrimaryTransaction> primaryTransaction; 
+	private List<PrimaryTransaction> primaryTransactionList; 
 
 	public Long getId() {
 		return id;
@@ -54,12 +54,12 @@ public class PrimaryAccount {
 		this.accountBalance = accountBalance;
 	}
 
-	public List<PrimaryTransaction> getPrimaryTransaction() {
-		return primaryTransaction;
+	public List<PrimaryTransaction> getPrimaryTransactionList() {
+		return primaryTransactionList;
 	}
 
-	public void setPrimaryTransaction(List<PrimaryTransaction> primaryTransaction) {
-		this.primaryTransaction = primaryTransaction;
+	public void setPrimaryTransactions(List<PrimaryTransaction> primaryTransaction) {
+		this.primaryTransactionList = primaryTransaction;
 	}
 
 }

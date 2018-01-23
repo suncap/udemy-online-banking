@@ -22,7 +22,7 @@ public class PrimaryTransaction {
 	private String status;
 	private double amount;
 	private BigDecimal availableBalance;
-
+	
 	@ManyToOne
 	@JoinColumn(name = "primary_account_id")
 	private PrimaryAccount primaryAccount;
@@ -31,7 +31,7 @@ public class PrimaryTransaction {
 	}
 
 	public PrimaryTransaction(Date date, String description, String type, String status, double amount,
-			BigDecimal availableBalance) {
+			BigDecimal availableBalance, PrimaryAccount account) {
 		super();
 		this.date = date;
 		this.description = description;
@@ -39,6 +39,7 @@ public class PrimaryTransaction {
 		this.status = status;
 		this.amount = amount;
 		this.availableBalance = availableBalance;
+		this.primaryAccount = account;
 	}
 
 	public Long getId() {
