@@ -73,7 +73,7 @@ public class TransferController {
 
         return "redirect:/transfer/recipient";
     }
-//
+
     @RequestMapping(value = "/recipient/edit", method = RequestMethod.GET)
     public String recipientEdit(@RequestParam(value = "recipientName") String recipientName, Model model, Principal principal){
 
@@ -85,7 +85,7 @@ public class TransferController {
 
         return "recipient";
     }
-//
+
     @RequestMapping(value = "/recipient/delete", method = RequestMethod.GET)
     @Transactional
     public String recipientDelete(@RequestParam(value = "recipientName") String recipientName, Model model, Principal principal){
@@ -101,23 +101,23 @@ public class TransferController {
 
         return "recipient";
     }
-//
-//    @RequestMapping(value = "/toSomeoneElse",method = RequestMethod.GET)
-//    public String toSomeoneElse(Model model, Principal principal) {
-//        List<Recipient> recipientList = transactionService.findRecipientList(principal);
-//
-//        model.addAttribute("recipientList", recipientList);
-//        model.addAttribute("accountType", "");
-//
-//        return "toSomeoneElse";
-//    }
-//
-//    @RequestMapping(value = "/toSomeoneElse",method = RequestMethod.POST)
-//    public String toSomeoneElsePost(@ModelAttribute("recipientName") String recipientName, @ModelAttribute("accountType") String accountType, @ModelAttribute("amount") String amount, Principal principal) {
-//        User user = userService.findByUsername(principal.getName());
-//        Recipient recipient = transactionService.findRecipientByName(recipientName);
-//        transactionService.toSomeoneElseTransfer(recipient, accountType, amount, user.getPrimaryAccount(), user.getSavingsAccount());
-//
-//        return "redirect:/userFront";
-//    }
+
+    @RequestMapping(value = "/toSomeoneElse",method = RequestMethod.GET)
+    public String toSomeoneElse(Model model, Principal principal) {
+        List<Recipient> recipientList = transactionService.findRecipientList(principal);
+
+        model.addAttribute("recipientList", recipientList);
+        model.addAttribute("accountType", "");
+
+        return "toSomeoneElse";
+    }
+
+    @RequestMapping(value = "/toSomeoneElse",method = RequestMethod.POST)
+    public String toSomeoneElsePost(@ModelAttribute("recipientName") String recipientName, @ModelAttribute("accountType") String accountType, @ModelAttribute("amount") String amount, Principal principal) {
+        User user = userService.findByUsername(principal.getName());
+        Recipient recipient = transactionService.findRecipientByName(recipientName);
+        transactionService.toSomeoneElseTransfer(recipient, accountType, amount, user.getPrimaryAccount(), user.getSavingsAccount());
+
+        return "redirect:/userFront";
+    }
 }
